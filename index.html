@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="./assets/css/style.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+
+		<script src="./assets/js/index.js"defer></script>
+		<script src="./assets/js/script.js" defer></script>
+		<script src="../assets/json/book_list.js"></script>
+		<script src="../assets/json/user_data.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="tab-group">
+				<button class="tab-btn active" onclick="activeTab(event,'sign-in')">
+					Sign In
+				</button>
+				<button class="tab-btn" onclick="activeTab(event, 'sign-up')">
+					Sign Up
+				</button>
+			</div>
+
+			<form action="" method="post" id="sign-in" class="tab-content">
+				<div class="title">
+					<h1>Welcome Back</h1>
+				</div>
+
+				<div class="input-group">
+					<label for="role-sign-in">Select you Role :</label>
+					<div class="input-field">
+						<select name="role" id="role-sign-in" class="input">
+							<option value="admin">Admin</option>
+							<option value="user">User</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<label for="username-sign-in">Username :</label>
+					<div class="input-field">
+						<input
+							type="email"
+							name="username"
+							id="username-sign-in"
+							placeholder="Enter your Username"
+							class="input"
+							required />
+					</div>
+
+					<div class="error-msg">
+						<small class="email-error"
+							>Please Enter a Valid Email address</small
+						>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<label for="password-sign-in">Password :</label>
+					<div class="input-field">
+						<input
+							type="password"
+							name="password"
+							id="password-sign-in"
+							placeholder="Enter Your Password"
+							class="input"
+							required />
+						<i class="bi bi-eye-fill pass-visible"></i>
+					</div>
+					<div class="error-msg">
+						<small class="password-error"
+							>Your password must be at least 8 characters <br />
+							Your password must contain at least one letter.
+							<br />
+							Your password must contain at least one digit.<br
+						/></small>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<button class="submit">Submit</button>
+				</div>
+			</form>
+			<form action="" method="post" id="sign-up" class="tab-content">
+				<div class="title">
+					<h1>Welcome !</h1>
+				</div>
+				<div class="input-group">
+					<label for="email-sign-up">Email Address :</label>
+					<div class="input-field">
+						<input
+							type="email"
+							name="email-sign-up"
+							id="email-sign-up"
+							placeholder="Enter your Email address" />
+					</div>
+					<div class="error-msg">
+						<small>Please Enter a Valid Email address</small>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<label for="password-sign-up">Password :</label>
+					<div class="input-field">
+						<input
+							type="password"
+							name="password-sign-up"
+							id="password-sign-up"
+							placeholder="Enter Your Password" />
+					</div>
+					<div class="error-msg">
+						<small>Seems like your password doesn't match.</small>
+					</div>
+				</div>
+
+				<div class="input-group">
+					<label for="Confirm-password-sign-up">Confirm Password :</label>
+					<div class="input-field">
+						<input
+							type="Confirm password"
+							name="Confirm-password-sign-up"
+							id="Confirm-password-sign-in"
+							placeholder="Enter Your Password" />
+					</div>
+					<div class="error-msg">
+						<small>Seems like your password doesn't match.</small>
+					</div>
+				</div>
+				<div class="input-group">
+					<button class="submit">Submit</button>
+				</div>
+			</form>
+		</div>
+
+		<!-- <script>
+
+let newUrl = window.location.origin + window.location.pathname + '?id=3';
+history.pushState({}, '', newUrl);
+
+
+    </script> -->
+	</body>
+</html>
