@@ -10,11 +10,12 @@
 		<link
 			rel="stylesheet"
 			href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+		
+		<script src="../assets/js/book-request.js" defer></script>
+		<script src="../assets/js/script.js" ></script>
 		<script src="../assets/js/header.js" defer></script>
 		<script src="../assets/js/sidebar.js" defer></script>
-		<script src="../assets/js/script.js" defer></script>
-		<script src="../assets/json/book_list.js"></script>
-		<script src="../assets/json/user_data.js"></script>
+		
 	</head>
 	<body>
 		<nav class="sidebar" id="sidebar">
@@ -48,15 +49,15 @@
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
-					<a href="./borrow-book.html" class="nav-items"
-						><i class="bi bi-book"></i>
-						<p>Borrow Books</p>
+					<a href="./history.html" class="nav-items"
+						><i class="bi bi-hourglass"></i>
+						<p>History</p>
 						<div
 							class="tooltip"
 							role="tooltip"
 							style="top: 255px"
 							data-popper-placement="right">
-							Borrow-Book
+							History
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
@@ -165,11 +166,19 @@
 							name="head-search"
 							id="head-search"
 							placeholder="Search..."
-							oninput="SearchBooks()" />
+							class="search-list-show" />
+							<div class="focus-out"></div>
+							<div class="search-list">
+								<div class="search-result">
+								</div>
+								<a href="../pages/library.html" class="show-all">
+									Show All Books
+								</a>
+							</div>
 					</div>
-					<div class="profile-area">
+					<a href="../pages/user_profile.html" aria-label="profile-page" class="profile-area">
 						<div class="profile-field"></div>
-					</div>
+					</a>
 				</div>
 			</header>
 
@@ -191,30 +200,30 @@
 						</div>
 					</div>
 					<div class="input-group">
-						<label for="author-name">Author-name : <sup style="color: var(--font-black);">(optional)</sup> </label>
+						<label for="author-name">Author-name :<sup>*</sup>  </label>
 						<div class="input-field">
 							<input
 								type="author-name"
 								name="author-name"
 								id="author-name"
 								placeholder="Enter the author-name"
-								class="input" />
+								class="input"
+								required />
 						</div>
 					</div>
 					<div class="input-group">
-						<label for="price">Approx price :<sup>*</sup></label>
+						<label for="price">Approx price :<sup style="color: var(--font-black);">(optional)</sup></label>
 						<div class="input-field">
 							<input
 								type="price"
 								name="price"
 								id="price"
 								placeholder="Enter the price"
-								class="input"
-								required />
+								class="input" />
 						</div>
 					</div>
 					<div class="input-group">
-						<label for="price">Why this Book? :<sup>*</sup></label>
+						<label for="description">Why this Book? :<sup>*</sup></label>
 						<div class="input-field">
 							<textarea name="description" id="description" ></textarea>
 						</div>

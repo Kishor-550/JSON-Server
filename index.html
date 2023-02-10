@@ -13,7 +13,7 @@
 		<script src="./assets/js/index.js"defer></script>
 		<script src="./assets/js/script.js" defer></script>
 		<script src="../assets/json/book_list.js"></script>
-		<script src="../assets/json/user_data.js"></script>
+		<!-- <script src="../assets/json/user_data.js"></script> -->
 	</head>
 	<body>
 		<div class="container">
@@ -32,24 +32,25 @@
 				</div>
 
 				<div class="input-group">
-					<label for="role-sign-in">Select you Role :</label>
+					<label for="role-sign-in">Select your Role : <sup>*</sup></label>
 					<div class="input-field">
 						<select name="role" id="role-sign-in" class="input">
-							<option value="admin">Admin</option>
-							<option value="user">User</option>
+							<option value="admin">Staff</option>
+							<option value="user" selected>Student</option>
 						</select>
 					</div>
 				</div>
 
 				<div class="input-group">
-					<label for="username-sign-in">Username :</label>
+					<label for="username-sign-in">Email address : <sup>*</sup></label>
 					<div class="input-field">
 						<input
 							type="email"
 							name="username"
 							id="username-sign-in"
-							placeholder="Enter your Username"
+							placeholder="Enter your Email address"
 							class="input"
+							onblur="userNameValidation('username-sign-in','.email-error')"
 							required />
 					</div>
 
@@ -61,19 +62,20 @@
 				</div>
 
 				<div class="input-group">
-					<label for="password-sign-in">Password :</label>
+					<label for="password-sign-in">Password : <sup>*</sup></label>
 					<div class="input-field">
 						<input
 							type="password"
 							name="password"
 							id="password-sign-in"
 							placeholder="Enter Your Password"
-							class="input"
-							required />
-						<i class="bi bi-eye-fill pass-visible"></i>
+							class="input password"
+							required
+							onblur="passValidation('password-sign-in','.sign-in-password-error')" />
+						<i class="bi bi-eye-fill pass-visible sign-in" onclick="passVisible('password-sign-in','.pass-visible.sign-in')"></i>
 					</div>
 					<div class="error-msg">
-						<small class="password-error"
+						<small class="sign-in-password-error"
 							>Your password must be at least 8 characters <br />
 							Your password must contain at least one letter.
 							<br />
@@ -86,53 +88,106 @@
 					<button class="submit">Submit</button>
 				</div>
 			</form>
-			<form action="" method="post" id="sign-up" class="tab-content">
+			<form action="" method="post" id="sign-up" class="tab-content" >
 				<div class="title">
 					<h1>Welcome !</h1>
 				</div>
 				<div class="input-group">
-					<label for="email-sign-up">Email Address :</label>
+					<label for="firstname-sign-up">First Name : <sup>*</sup></label>
+					<div class="input-field">
+						<input
+							type="text"
+							name="firstname-sign-up"
+							id="firstname-sign-up"
+							placeholder="Enter your First Name " 
+							pattern="[A-Za-z]{1,32}"
+							required/>
+					</div>
+				</div>
+				<div class="input-group">
+					<label for="lastname-sign-up">Last Name : <sup>*</sup></label>
+					<div class="input-field">
+						<input
+							type="text"
+							name="lastname-sign-up"
+							id="lastname-sign-up"
+							placeholder="Enter your Last Name"
+							pattern="[A-Za-z]{1,32}" 
+							required/>
+					</div>
+				</div>
+				<div class="input-group">
+					<label for="role-sign-up">Select your Role : <sup>*</sup></label>
+					<div class="input-field">
+						<select name="role" id="role-sign-up" class="input" required>
+							<option value="admin">Staff</option>
+							<option value="user" selected>Student</option>
+						</select>
+					</div>
+				</div>
+				<div class="input-group">
+					<label for="DOB-sign-up">Date of Birth : <sup>*</sup></label>
+					<div class="input-field">
+						<input
+							type="date"
+							name="DOB-sign-up"
+							id="DOB-sign-up"
+							placeholder="Enter your Date of Birth" 
+							required/>
+					</div>
+				</div>
+				<div class="input-group">
+					<label for="email-sign-up">Email Address : <sup>*</sup></label>
 					<div class="input-field">
 						<input
 							type="email"
 							name="email-sign-up"
 							id="email-sign-up"
-							placeholder="Enter your Email address" />
+							placeholder="Enter your Email address" 
+							onblur="userNameValidation('email-sign-up','.email-error-sign-up small')"
+							required/>
 					</div>
-					<div class="error-msg">
+					<div class="email-error-sign-up error-msg">
 						<small>Please Enter a Valid Email address</small>
 					</div>
 				</div>
 
 				<div class="input-group">
-					<label for="password-sign-up">Password :</label>
+					<label for="password-sign-up">Password : <sup>*</sup></label>
 					<div class="input-field">
 						<input
 							type="password"
 							name="password-sign-up"
 							id="password-sign-up"
-							placeholder="Enter Your Password" />
+							class="password"
+							placeholder="Enter Your Password" 
+							onblur="passValidation('password-sign-up','.sign-up-password-error')"
+							required/>
+						<i class="bi bi-eye-fill pass-visible pass-sign-up" onclick="passVisible('password-sign-up','.pass-visible.pass-sign-up')"></i>
 					</div>
 					<div class="error-msg">
-						<small>Seems like your password doesn't match.</small>
+						<small class="sign-up-password-error">Seems like your password doesn't match.</small>
 					</div>
 				</div>
 
 				<div class="input-group">
-					<label for="Confirm-password-sign-up">Confirm Password :</label>
+					<label for="confirm-password-sign-up">Confirm Password : <sup>*</sup></label>
 					<div class="input-field">
 						<input
-							type="Confirm password"
-							name="Confirm-password-sign-up"
-							id="Confirm-password-sign-in"
-							placeholder="Enter Your Password" />
+							type="password"
+							name="confirm-password-sign-up"
+							id="confirm-password-sign-up"
+							placeholder="Enter Your Password"
+							onblur="confirmPassValidation('confirm-password-sign-up','.confirm-password-sign-up','password-sign-up')"
+							required />
+						<i class="bi bi-eye-fill pass-visible confirm-sign-up" onclick="passVisible('confirm-password-sign-up','.pass-visible.confirm-sign-up')"></i>
 					</div>
 					<div class="error-msg">
-						<small>Seems like your password doesn't match.</small>
+						<small class="confirm-password-sign-up">Seems like your password doesn't match.</small>
 					</div>
 				</div>
 				<div class="input-group">
-					<button class="submit">Submit</button>
+					<button class="submit" onclick="registerUser()">Submit</button>
 				</div>
 			</form>
 		</div>
@@ -144,5 +199,17 @@ history.pushState({}, '', newUrl);
 
 
     </script> -->
+
+	<script>
+		// let userJson = JSON.stringify(user_data)
+		const bookJson = JSON.stringify(book_list)
+		const popBookJson = JSON.stringify(popular_book_list)
+		const intrestBookJson = JSON.stringify(intresting_book_list)
+
+		// window.onload = localStorage.setItem("user_data", userJson)
+		window.onload = localStorage.setItem("book_list", bookJson)
+		window.onload = localStorage.setItem("popular_book_list", popBookJson)
+		window.onload = localStorage.setItem("intresting_book_list", intrestBookJson)
+	</script>
 	</body>
 </html>

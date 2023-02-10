@@ -4,16 +4,15 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Library</title>
+		<title>User Profile</title>
 		<link rel="stylesheet" href="../assets/css/main_page.css" />
 		<link
 			rel="stylesheet"
 			href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
-			<!-- <script src="../assets/json/book_list.js"></script> -->
 			<script src="../assets/js/script.js"></script>
-			<script src="../assets/js/header.js" defer></script>
-			<script src="../assets/js/library.js" defer></script>
-			<script src="../assets/js/sidebar.js" defer></script>
+		<script src="../assets/js/header.js" defer></script>
+		<script src="../assets/js/sidebar.js" defer></script>
+		<script src="../assets/js/user_profile.js" defer></script>
 		<link rel="stylesheet" href="../node_modules/aos/dist/aos.css" />
 		<script src="../node_modules/aos/dist/aos.js"></script>
 	</head>
@@ -37,8 +36,8 @@
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
-					<a href="#" class="nav-items active"
-						><i class="bi bi-building-fill"></i>
+					<a href="#" class="nav-items"
+						><i class="bi bi-building"></i>
 						<p>Library</p>
 						<div
 							class="tooltip"
@@ -174,29 +173,108 @@
 							name="head-search"
 							id="head-search"
 							placeholder="Search..."
-							oninput="tagFilterBooks('All'),SearchBooks()" />
-							
+							 class="search-list-show"/>
+							 <div class="focus-out"></div>
+					<div class="search-list">
+						<div class="search-result">
+						</div>
+						<a href="../pages/library.html" aria-label="profile-page" class="show-all">
+							Show All Books
+						</a>
 					</div>
-					<a href="../pages/user_profile.html" aria-label="profile-page" class="profile-area">
+					</div>
+					<div class="profile-area">
 						<div class="profile-field"></div>
-					</a>
+					</div>
 				</div>
 			</header>
 
-			<main class="library-container" style="height: 100%">
-				<div class="library-tags">
-					<button onclick="tagFilterBooks('All')" class="active">
-						All
-					</button>
-					<button onclick="tagFilterBooks('Fantasy')">Fantasy</button>
-					<button onclick="tagFilterBooks('Education')">Education</button>
-					<button onclick="tagFilterBooks('Business')">Business</button>
-					<button onclick="tagFilterBooks('Physcology')">
-						Physcology
-					</button>
-				</div>
-				<div
-					class="library-section generated-books books-section-style"></div>
+			<main class="user-detail-container">
+				<form action="" class="user-detail-form">
+					<div class="form-title">
+						<h2>User-Profile</h2>
+					</div>
+					<div class="user-image"></div>
+					<div class="input-flex-grp">
+						<div class="input-group">
+							<label for="ud-first-name">First Name : </label>
+							<div class="input-field">
+								<input
+									type="text"
+									name="ud-first-name"
+									id="ud-first-name"
+									class="input ud-input"
+									value="First Name"
+									readonly />
+							</div>
+						</div>
+						<div class="input-group">
+							<label for="ud-last-name">Last Name :</label>
+							<div class="input-field">
+								<input
+									type="text"
+									name="ud-last-name"
+									id="ud-last-name"
+									class="input ud-input"
+									value="Last Name"
+									readonly />
+							</div>
+						</div>
+						<div class="input-group">
+							<label for="ud-display-name">Display Name :</label>
+							<div class="input-field">
+								<input
+									type="text"
+									name="ud-display-name"
+									id="ud-display-name"
+									class="input ud-input"
+									value="Display name"
+									readonly />
+							</div>
+						</div>
+						<div class="input-group">
+							<label for="ud-dob">Date of Birth :</label>
+							<div class="input-field">
+								<input
+									type="date"
+									name="ud-dob"
+									id="ud-dob"
+									class="input ud-input"
+									value="Date of Birth"
+									readonly />
+							</div>
+						</div>
+						<div class="input-group">
+							<label for="ud-phone-number">Phone Number :</label>
+							<div class="input-field">
+								<input
+									type="number"
+									name="ud-phone-number"
+									id="ud-phone-number"
+									class="input ud-input"
+									value="1234567898"
+									readonly />
+							</div>
+						</div>
+						<div class="input-group">
+							<label for="ud-email">Email address :</label>
+							<div class="input-field">
+								<input
+									type="text"
+									name="ud-email"
+									id="ud-email"
+									class="input ud-input"
+									value="example@gmail.com"
+									readonly />
+							</div>
+						</div>
+						<div class="input-group" style="display: flex; gap: 20px;">
+							<button class="user-detail-edit submit">Edit</button>
+                            <button class="user-detail-save submit">Save Changes</button>
+                            <button class="user-detail-cancel submit">Cancel</button>
+						</div>
+					</div>
+				</form>
 			</main>
 
 			<div class="backdrop"></div>
@@ -237,9 +315,6 @@
 				</div>
 			</div>
 		</section>
-	<script >
-		
-
-	</script>
 	</body>
+	<script></script>
 </html>

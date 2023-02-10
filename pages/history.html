@@ -4,16 +4,14 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Library</title>
+		<title>History</title>
 		<link rel="stylesheet" href="../assets/css/main_page.css" />
 		<link
 			rel="stylesheet"
 			href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
-			<!-- <script src="../assets/json/book_list.js"></script> -->
-			<script src="../assets/js/script.js"></script>
-			<script src="../assets/js/header.js" defer></script>
-			<script src="../assets/js/library.js" defer></script>
-			<script src="../assets/js/sidebar.js" defer></script>
+		<script src="../assets/js/header.js" defer></script>
+		<script src="../assets/js/sidebar.js" defer></script>
+		<script src="../assets/js/script.js"></script>
 		<link rel="stylesheet" href="../node_modules/aos/dist/aos.css" />
 		<script src="../node_modules/aos/dist/aos.js"></script>
 	</head>
@@ -26,7 +24,7 @@
 				</div>
 				<div class="divider-line"></div>
 				<div class="nav-list">
-					<a href="./homepage.html" class="nav-items"
+					<a href="./homepage.html" class="nav-items "
 						><i class="bi bi-house"></i>
 						<p>Home</p>
 						<div
@@ -37,8 +35,8 @@
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
-					<a href="#" class="nav-items active"
-						><i class="bi bi-building-fill"></i>
+					<a href="./library.html" class="nav-items "
+						><i class="bi bi-building"></i>
 						<p>Library</p>
 						<div
 							class="tooltip"
@@ -49,8 +47,8 @@
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
-					<a href="./history.html" class="nav-items"
-						><i class="bi bi-hourglass"></i>
+					<a href="./history.html" class="nav-items active"
+						><i class="bi bi-hourglass-split"></i>
 						<p>History</p>
 						<div
 							class="tooltip"
@@ -174,8 +172,15 @@
 							name="head-search"
 							id="head-search"
 							placeholder="Search..."
-							oninput="tagFilterBooks('All'),SearchBooks()" />
-							
+							class="search-list-show" />
+							<div class="focus-out"></div>
+							<div class="search-list">
+								<div class="search-result">
+								</div>
+								<a href="../pages/library.html" class="show-all">
+									Show All Books
+								</a>
+							</div>
 					</div>
 					<a href="../pages/user_profile.html" aria-label="profile-page" class="profile-area">
 						<div class="profile-field"></div>
@@ -183,20 +188,24 @@
 				</div>
 			</header>
 
-			<main class="library-container" style="height: 100%">
-				<div class="library-tags">
-					<button onclick="tagFilterBooks('All')" class="active">
-						All
-					</button>
-					<button onclick="tagFilterBooks('Fantasy')">Fantasy</button>
-					<button onclick="tagFilterBooks('Education')">Education</button>
-					<button onclick="tagFilterBooks('Business')">Business</button>
-					<button onclick="tagFilterBooks('Physcology')">
-						Physcology
-					</button>
+			<main class="history-container">
+				<h3>History</h3>
+				<div class="history-table-wrapper">
+					<table class="history-table">
+						<thead>
+							<tr>
+								<th>Id.No</th>
+								<th>Book Name</th>
+								<th>Status</th>
+								<th>Borrow Date</th>
+								<th>Due Date</th>
+								<th>Submitted Date</th>
+							</tr>
+						</thead>
+						<tbody class="history-table-body">
+						</tbody>
+					</table>
 				</div>
-				<div
-					class="library-section generated-books books-section-style"></div>
 			</main>
 
 			<div class="backdrop"></div>
@@ -237,9 +246,59 @@
 				</div>
 			</div>
 		</section>
-	<script >
-		
+	<script>
+		const id = localStorage.getItem("id");
+		const data = getUserData();
+		let userId = data.find((u) => u.id == id);
 
+		if (userId['borrow_history'].length == 0) {
+			console.log("hello")
+		}
+		for (const i of userId['borrow_history']) {
+			const thisBook = book_list.find((e)=> e['isbn'] == i['book_id'])
+			const tableBody = document.querySelector(".history-table-body")
+
+			const tableRow = document.createElement("tr")
+			tableBody.append(tableRow)
+
+			const tableCellId = document.createElement("td")
+			tableCellId.setAttribute("class","history-id")
+			tableCellId.innerText = i['id']
+			tableRow.append(tableCellId)
+
+			const tableCellBook = document.createElement("td")
+			tableCellBook.setAttribute("class","history-bookName")
+			tableCellBook.innerText = thisBook['title']
+			tableRow.append(tableCellBook)
+
+			const tableCellStatus = document.createElement("td")
+			const tableCellStatusSpan = document.createElement("span")
+			tableCellStatusSpan.setAttribute("class","history-status")
+			tableCellStatusSpan.innerText = i['status']
+			tableCellStatus.append(tableCellStatusSpan)
+			tableRow.append(tableCellStatus)
+			
+			if (i['status'] == 'Completed') {
+				tableCellStatusSpan.setAttribute("class","history-status completed")
+			} else if((i['status'] == 'Rejected') ){
+				tableCellStatusSpan.setAttribute("class","history-status rejected")
+			}
+			const tableCellBorrow = document.createElement("td")
+			tableCellBorrow.setAttribute("class","history-borrow-date")
+			tableCellBorrow.innerText = i['borrow_date']
+			tableRow.append(tableCellBorrow)
+
+			const tableCellDue = document.createElement("td")
+			tableCellDue.setAttribute("class","history-due-date")
+			tableCellDue.innerText = i['due_date']
+			tableRow.append(tableCellDue)
+
+			const tableCellSubDate = document.createElement("td")
+			tableCellSubDate.setAttribute("class","history-submitted-date")
+			tableCellSubDate.innerText = i['submitted_date']
+			tableRow.append(tableCellSubDate)
+		}
 	</script>
 	</body>
+
 </html>

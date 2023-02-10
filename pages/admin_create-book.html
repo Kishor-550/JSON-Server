@@ -4,16 +4,16 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Library</title>
+		<title>Borrow-Books</title>
 		<link rel="stylesheet" href="../assets/css/main_page.css" />
 		<link
 			rel="stylesheet"
 			href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
-			<!-- <script src="../assets/json/book_list.js"></script> -->
-			<script src="../assets/js/script.js"></script>
-			<script src="../assets/js/header.js" defer></script>
-			<script src="../assets/js/library.js" defer></script>
-			<script src="../assets/js/sidebar.js" defer></script>
+		<script src="../assets/js/header.js" defer></script>
+		<script src="../assets/js/sidebar.js" defer></script>
+		<script src="../assets/js/script.js"></script>
+		<script src="../assets/json/book_list.js"></script>
+		<script src="../assets/json/user_data.js"></script>
 		<link rel="stylesheet" href="../node_modules/aos/dist/aos.css" />
 		<script src="../node_modules/aos/dist/aos.js"></script>
 	</head>
@@ -26,8 +26,8 @@
 				</div>
 				<div class="divider-line"></div>
 				<div class="nav-list">
-					<a href="./homepage.html" class="nav-items"
-						><i class="bi bi-house"></i>
+					<a href="./homepage.html" class="nav-items active"
+						><i class="bi bi-house-fill"></i>
 						<p>Home</p>
 						<div
 							class="tooltip"
@@ -37,8 +37,8 @@
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
-					<a href="#" class="nav-items active"
-						><i class="bi bi-building-fill"></i>
+					<a href="#" class="nav-items"
+						><i class="bi bi-building"></i>
 						<p>Library</p>
 						<div
 							class="tooltip"
@@ -49,15 +49,15 @@
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
-					<a href="./history.html" class="nav-items"
-						><i class="bi bi-hourglass"></i>
-						<p>History</p>
+					<a href="./borrow-book.html" class="nav-items"
+						><i class="bi bi-book"></i>
+						<p>Borrow Books</p>
 						<div
 							class="tooltip"
 							role="tooltip"
 							style="top: 255px"
 							data-popper-placement="right">
-							History
+							Borrow-Book
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
@@ -174,29 +174,105 @@
 							name="head-search"
 							id="head-search"
 							placeholder="Search..."
-							oninput="tagFilterBooks('All'),SearchBooks()" />
-							
+							oninput="SearchBooks()" />
 					</div>
-					<a href="../pages/user_profile.html" aria-label="profile-page" class="profile-area">
+					<div class="profile-area">
 						<div class="profile-field"></div>
-					</a>
+					</div>
 				</div>
 			</header>
 
-			<main class="library-container" style="height: 100%">
-				<div class="library-tags">
-					<button onclick="tagFilterBooks('All')" class="active">
-						All
-					</button>
-					<button onclick="tagFilterBooks('Fantasy')">Fantasy</button>
-					<button onclick="tagFilterBooks('Education')">Education</button>
-					<button onclick="tagFilterBooks('Business')">Business</button>
-					<button onclick="tagFilterBooks('Physcology')">
-						Physcology
-					</button>
-				</div>
-				<div
-					class="library-section generated-books books-section-style"></div>
+			<main class="create-book-container">
+				<form action="" id="create-book" onsubmit="createBook()">
+					<div class="title" style="text-align: center">
+						<h1>Create Book</h1>
+					</div>
+
+					<div class="input-group">
+						<label for="isbn">ISBN :<sup>*</sup></label>
+						<div class="input-field">
+							<input
+								type="number"
+								name="isbn"
+								id="Isbn"
+								placeholder="Enter the ISBN"
+								class="input"
+								required />
+						</div>
+					</div>
+
+					<div class="input-group">
+						<label for="title">Title :<sup>*</sup></label>
+						<div class="input-field">
+							<input
+								type="text"
+								name="title"
+								id="Title"
+								placeholder="Enter the title name"
+								class="input"
+								required />
+						</div>
+					</div>
+					<div class="input-group">
+						<label for="Sub-title">Sub-Title :<sup>*</sup></label>
+						<div class="input-field">
+							<input
+								type="text"
+								name="Sub-title"
+								id="Sub-title"
+								placeholder="Enter the Sub-title name"
+								class="input"
+								required />
+						</div>
+					</div>
+
+					<div class="input-group">
+						<label for="authorname">Author Name :<sup>*</sup></label>
+						<div class="input-field">
+							<input
+								type="text"
+								name="authorname"
+								id="Authorname"
+								placeholder="Enter the Authorname"
+								class="input"
+								required />
+						</div>
+					</div>
+					<div class="input-group">
+						<label for="Page">Page :<sup>*</sup></label>
+						<div class="input-field">
+							<input
+								type="number"
+								name="Page"
+								id="Page"
+								placeholder="Enter Number of Pages"
+								class="input"
+								required />
+						</div>
+					</div>
+
+					<div class="input-group">
+						<label for="image">Image URL :<sup>*</sup></label>
+						<div class="input-field">
+							<input
+								type="text"
+								name="image"
+								id="Image"
+								placeholder="Enter image URL"
+								class="input"
+								required />
+						</div>
+					</div>
+					<div class="input-group">
+						<label for="description">Description :<sup>*</sup></label>
+						<div class="input-field">
+							<textarea name="description" id="Description"></textarea>
+						</div>
+					</div>
+					<div class="input-group">
+						<button type="submit" class="submit">Submit</button>
+					</div>
+				</form>
 			</main>
 
 			<div class="backdrop"></div>
@@ -237,9 +313,38 @@
 				</div>
 			</div>
 		</section>
-	<script >
-		
+	</body>
+	<script>
+		const data = user_data;
+		let id = localStorage.getItem("id");
+		let userId = data.find((u) => u.id == id);
+
+		function createBook() {
+			const isbnNumber = document.getElementById("Isbn").value;
+			const title = document.getElementById("Title").value;
+			const subtitle = document.getElementById("Sub-title").value;
+			const authorName = document.getElementById("Authorname").value;
+			const pages = document.getElementById("Page").value;
+			const imageUrl = document.getElementById("Image").value;
+			const description = document.getElementById("Description").value;
+
+			console.log(
+				isbnNumber,
+				title,
+				subtitle,
+				authorName,
+				pages,
+				imageUrl,
+				description
+			);
+			let myArray = [];
+			let myObject = { 
+				isbn: isbnNumber,
+			
+			};
+			myArray.push(myObject);
+			console.log(myArray)
+		}
 
 	</script>
-	</body>
 </html>

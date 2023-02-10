@@ -9,12 +9,13 @@
 		<link
 			rel="stylesheet"
 			href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+		<script src="../assets/json/home_books.js"></script>
+		<script src="../assets/js/script.js"defer></script>
 		<script src="../assets/js/header.js" defer></script>
 		<script src="../assets/js/sidebar.js" defer></script>
-		<script src="../assets/js/script.js"></script>
-		<script src="../assets/json/book_list.js"></script>
-		<script src="../assets/json/user_data.js"></script>
 		<script src="../assets/js/easypiechart.js"></script>
+		<script src="../assets/js/homepage.js" defer></script>
+
 		<link rel="stylesheet" href="../node_modules/aos/dist/aos.css" />
 		<script src="../node_modules/aos/dist/aos.js"></script>
 	</head>
@@ -50,15 +51,15 @@
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
-					<a href="./borrow-book.html" class="nav-items"
-						><i class="bi bi-book"></i>
-						<p>Borrow Books</p>
+					<a href="./history.html" class="nav-items"
+						><i class="bi bi-hourglass"></i>
+						<p>History</p>
 						<div
 							class="tooltip"
 							role="tooltip"
 							style="top: 255px"
 							data-popper-placement="right">
-							Borrow-Book
+							History
 							<div class="arrow" data-popper-arrow></div>
 						</div>
 					</a>
@@ -175,11 +176,20 @@
 							name="head-search"
 							id="head-search"
 							placeholder="Search..."
-							oninput="" />
+							class="search-list-show"
+							/>
+							<div class="focus-out"></div>
+						<div class="search-list">
+							<div class="search-result">
+							</div>
+							<a href="../pages/library.html" class="show-all">
+								Show All Books
+							</a>
+						</div>
 					</div>
-					<div class="profile-area">
+					<a href="../pages/user_profile.html" aria-label="profile-page" class="profile-area">
 						<div class="profile-field"></div>
-					</div>
+					</a>
 				</div>
 			</header>
 
@@ -203,7 +213,7 @@
 								<h4>No of Books Borrowed :</h4>
 							</div>
 							<div class="card-chart">
-								<h4 class="avail-books chart-percent">15</h4>
+								<h4 class="borrowed-books chart-percent">15</h4>
 								<span
 									class="chart borrow-chart"
 									data-percent="40"></span>
@@ -239,8 +249,8 @@
 						<a href="../pages/library.html">Explore Now</a>
 					</div>
 				</section>
-				<section class="hero-section" style="flex-wrap: wrap;">
-					<div class="books-content" >
+				<section class="hero-section hero-interseting">
+					<div class="books-content">
 						<h3>
 							CAN BE <br />
 							<span>INTERESTING</span>
@@ -275,15 +285,15 @@
 						</div>
 					</div>
 					<div class="input-group" style="flex: 1">
-						<label for="role-sign-in">Start Date :</label>
+						<label for="borrow-date">Borrow Date :</label>
 						<div class="input-field">
-							<input type="date" name="" id="" required />
+							<input type="date" name="borrow-date" id="borrow-date" required />
 						</div>
 					</div>
 					<div class="input-group" style="flex: 1">
-						<label for="role-sign-in">End Date :</label>
+						<label for="due-date">Due Date :</label>
 						<div class="input-field">
-							<input type="date" name="" id="" required />
+							<input type="date" name="due-date" id="due-date" required />
 						</div>
 					</div>
 				</div>
@@ -293,54 +303,4 @@
 			</div>
 		</section>
 	</body>
-
-	<script>
-		AOS.init();
-		const data = user_data;
-		let id = localStorage.getItem("id");
-		let userId = data.find((u) => u.id == id);
-
-		document.querySelector(".modal-submit").addEventListener("click", () => {
-			console.log(userId["borrow_history"].push("hi"));
-		});
-		const popularBookData = popular_book_list;
-
-		for (const book of popularBookData) {
-			const bookRack = document.querySelector(".generated-books");
-
-			generateBook(book, bookRack, popularBookData);
-		}
-
-		const intrestingBookData = intresting_book_list;
-		for (const book of intrestingBookData) {
-			const bookRack = document.querySelector(".intresting-books");
-
-			generateBook(book, bookRack, intrestingBookData);
-		}
-
-		toggleFavourites();
-
-		checkForFavourites();
-
-		let favBooks = userId.favourites;
-		document.querySelector(".avail-books").innerHTML += book_list.length;
-		document.querySelector(".fav-books").innerHTML = favBooks.length;
-		document
-			.querySelector(".chart")
-			.setAttribute("data-percent", `${book_list.length}`);
-		document
-			.querySelector(".fav-chart")
-			.setAttribute("data-percent", `${favBooks.length}`);
-
-		let element = document.querySelectorAll(".chart");
-		for (const i of element) {
-			new EasyPieChart(i, {
-				size: 120,
-				lineWidth: 13,
-				barColor: "#ffffff",
-				trackColor: "#ffffff55",
-				scaleColor: "transparent",
-			});
-		}
-	</script>
 </html>

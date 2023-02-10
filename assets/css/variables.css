@@ -8,7 +8,7 @@
 	--primary-color: #8875e8;
 	--primary-shade: hsl(250, 71%, 68%, 0.15);
 	--primary-border: #536272;
-	--success-green: hsl(160, 78%, 47%);
+	--success-green: hsl(160, 70%, 34%);
 	--success-green-shade: #d1f7ea;
 	--danger-red: #ea3a3d;
 	--danger-red-shade: #fbd8d8;
@@ -36,8 +36,8 @@
 	--primary-color: #4f30e8;
 	--primary-shade: hsla(262, 80%, 55%, 0.15);
 	--primary-border: #99b2c6;
-	--success-green: hsl(160, 78%, 47%);
-	--success-green-shade: #d1f7ea;
+	--success-green: rgb(42, 168, 126);
+	--success-green-shade: #ddfff3;
 	--danger-red: #ea3a3d;
 	--danger-red-shade: #fbd8d8;
 	--font-black: #132136;
@@ -93,25 +93,20 @@ small {
 	color: var(--body-black);
 }
 *::-webkit-scrollbar-track{
-	-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: #F5F5F5;
+	border-radius: 10px;	
 }
 
 *::-webkit-scrollbar{
-  	width: 20px;
+  	width: 8px;
 	background-color: #F5F5F5;
 }
 
 *::-webkit-scrollbar-thumb{
-  border: 5px solid transparent;
   border-radius: 100px;
   background-color: #989898;
-  background-clip: content-box;
 }
 *::-webkit-scrollbar-thumb:hover{
   background-color: #7d7d7d;
-
 }
 .input-group {
 	margin: 15px 0;
@@ -292,11 +287,7 @@ button:disabled:hover {
 	z-index: 2;
   }
   
-  /* @media only screen and (max-width: 768px) {
-	.tooltip{
-		display: none;
-	}
-  } */
+
   .arrow,
   .arrow::before {
 	position: absolute;
@@ -326,8 +317,6 @@ button:disabled:hover {
 		--h2-fs: 29px;
 		--h3-fs: 25px;
 	}
-	*::-webkit-scrollbar{
-		width: unset;
-	  }
+	
 	
 }
